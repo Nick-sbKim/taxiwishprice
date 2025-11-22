@@ -225,6 +225,12 @@
         <h1>🚕 개인택시 판매 희망시세 등록</h1>
 
         <form id="taxiForm" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSculM9Y8lUaTjZN7w5ddxUFwX8ercNIDJA1zd8y9YfGK8SHBg/formResponse" method="POST" target="no-target">
+            
+            <input type="hidden" name="fvv" value="1">
+            <input type="hidden" name="partialResponse" value="[null,null,&quot;-3408972535097128982&quot;]">
+            <input type="hidden" name="pageHistory" value="0">
+            <input type="hidden" name="fbzx" value="-3408972535097128982">
+
             <label for="name">기사님 성함</label>
             <input type="text" id="name" name="entry.910017025" required placeholder="예: 김길동 (실명)">
 
@@ -248,7 +254,7 @@
             </div>
             
             <div class="consent-group">
-                <input type="checkbox" id="consent" name="entry.1383018245" required>
+                <input type="checkbox" id="consent" name="entry.1383018245" value="네" required>
                 <label for="consent" class="consent-label">개인정보 수집 및 이용에 동의합니다.</label>
             </div>
             
