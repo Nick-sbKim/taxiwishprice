@@ -9,7 +9,7 @@
 @import url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquare.woff');
 
 /* ************************************************************ */
-/* ✅ 상수 정의 (높이값 조정) */
+/* ✅ 상수 정의 */
 :root {
     --input-gap: 5px;
     --input-padding-vertical: 12px;
@@ -54,7 +54,7 @@
     --price-text-font-size: 1.1em; 
 }
 /* ************************************************************ */
-/* 기본 설정 */
+/* 기본 설정 (유지) */
 body {
     font-family: 'NanumSquare', sans-serif;
     color: var(--text-color);
@@ -84,41 +84,45 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
 .step.active { display: block; }
 .step-content { padding: 20px var(--content-padding); margin: 0 var(--content-padding) 20px var(--content-padding); border-radius: 10px; border: 1px solid var(--input-border); background-color: #F8F8F8; }
 .section-title { font-size: 1.2em; font-weight: 800; color: var(--label-color); margin-bottom: 25px; padding-bottom: 5px; border-bottom: 1px dashed #BDBDBD; }
+
 /* ----------------------------------- */
-/* ✅ 1. 단계 안내 바 스타일 (라인 끝 조정) */
+/* ✅ 1. 단계 안내 바 스타일 (라인 끝 조정 및 텍스트 중앙 정렬) */
 /* ----------------------------------- */
 .progress-bar-container { display: flex; justify-content: space-between; align-items: center; position: relative; margin-bottom: 30px; padding: 0 20px; }
 .progress-bar-container::before { 
     content: ''; 
     position: absolute; 
-    top: 15px; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
-    width: calc(100% - 40px); /* ✅ 폭 조정 */
+    top: 50%; /* 중앙으로 조정 */
+    transform: translateY(-50%); 
+    left: 20px; /* ✅ 왼쪽 패딩만큼 시작점 조정 */
+    right: 20px; /* ✅ 오른쪽 패딩만큼 끝점 조정 */
+    width: calc(100% - 40px); /* ✅ 폭을 100% - (좌우 패딩)으로 조정 */
     height: 4px; 
     background-color: var(--light-border-color); 
     z-index: 0; 
 }
 .step-indicator { text-align: center; position: relative; z-index: 1; color: var(--secondary-text-color); font-size: 0.9em; font-weight: 600; }
 .step-circle { 
-    width: 30px; 
-    height: 30px; 
+    width: 60px; /* ✅ 너비 조정 */
+    height: 30px; /* ✅ 높이 조정 */
     border-radius: 8px; 
     background-color: #EEEEEE; 
     color: #757575; 
     display: flex; 
-    justify-content: center; 
-    align-items: center;     
+    justify-content: center; /* ✅ 중앙 정렬 */
+    align-items: center;     /* ✅ 중앙 정렬 */
     margin: 0 auto 5px; 
     font-weight: 800; 
     border: 2px solid #BDBDBD; 
     transition: all 0.3s; 
+    line-height: 1; /* 텍스트 높이 조정 */
+    font-size: 0.9em; /* 폰트 사이즈 조정 */
 }
 .step-indicator.active .step-circle { background-color: var(--main-color); color: white; border-color: var(--main-color); box-shadow: 0 0 0 5px rgba(25, 118, 210, 0.2); }
 .step-indicator.active .step-text { color: var(--main-color); }
 .step-indicator.completed .step-circle { background-color: #E0E0E0; color: white; border-color: #E0E0E0; }
 /* ----------------------------------- */
-/* 기본 인풋 그룹 (1단계 연락처 정보) (유지) */
+/* 일반 입력 필드 스타일 (유지) */
 .input-group {
     display: flex;
     flex-wrap: wrap;
@@ -188,17 +192,13 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     text-align: left !important;
 }
 
-/* ----------------------------------- */
-/* ✅ 플레이스홀더만 가운데 정렬 */
-/* ----------------------------------- */
+/* 플레이스홀더만 가운데 정렬 (유지) */
 #name::placeholder,
 .split-unit-wrapper input#phone::placeholder,
 #licensePriceInput::placeholder {
     text-align: center;
 }
-/* ----------------------------------- */
-
-/* ✅ 완료/포커스 시 배경색: 흰색 (input, select 모두 적용) (유지) */
+/* 완료/포커스 시 배경색: 흰색 (유지) */
 .data-input-field:focus,
 .data-input-field.completed,
 .select-field.completed {
@@ -216,12 +216,12 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
 
 /* Select Box 드롭다운 아이콘 설정 */
 .select-box, .car-hangul-box { position: relative; }
-/* ✅ 역삼각형 아이콘 위치 조정 */
+/* ✅ 2. 역삼각형 아이콘 위치 조정 */
 .select-box::after, .car-hangul-box::after {
     content: '▼';
     position: absolute;
     top: 50%;
-    right: 18px; 
+    right: 10px; /* ✅ 오른쪽으로 더 붙여서 텍스트와 겹침 방지 */
     transform: translateY(-50%);
     font-size: 0.8em;
     color: var(--label-color);
@@ -229,7 +229,7 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     z-index: 10;
     transition: opacity 0.3s;
 }
-/* ✅ 선택 완료 시 아이콘 숨기기 */
+/* ✅ 선택 완료 시 아이콘 숨기기 (유지) */
 .select-box.selected::after,
 .car-hangul-box.selected::after { opacity: 0; }
 
@@ -297,14 +297,14 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
 #carNumPart1 { flex: 2; max-width: 80px; }
 #carNumPart2 { flex: 3; min-width: 90px; }
 .car-number-split-wrapper .car-hangul-box { flex: 2; min-width: 60px; }
-/* ✅ '선택' 드롭다운 텍스트 왼쪽 정렬 */
+/* '선택' 드롭다운 텍스트 왼쪽 정렬 (유지) */
 .car-number-split-wrapper .car-hangul-box select {
     text-align: left !important;
     padding-left: 10px !important;
 }
 
 
-/* ✅ 3. 면허 판매 희망가격 관련 스타일 (수정 반영) */
+/* ✅ 3. 면허 판매 희망가격 관련 스타일 (너비 축소, 폰트 크기 확대, 패딩 축소) */
 .price-input-group {
     display: flex;
     justify-content: center; 
@@ -334,7 +334,7 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     align-items: center;
     justify-content: center;
     font-weight: 900; 
-    font-size: var(--price-text-font-size); /* ✅ 변수 적용 */
+    font-size: var(--price-text-font-size); 
     color: black; 
     background-color: transparent; 
     border: none; 
@@ -343,18 +343,18 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     padding: 0 5px 0 0; 
 }
 
-/* 숫자 입력 필드 (너비 40%, 패딩/폰트 크기 변경) */
+/* 숫자 입력 필드 (너비 30%, 폰트 크기 1.2em로 더 확대, 패딩 최소화) */
 .unified-price-input input {
-    width: 40%; /* ✅ 너비를 40%로 추가 축소 */
+    width: 30%; /* ✅ 너비를 30%로 추가 축소 */
     flex-grow: 0; 
-    min-width: 50px;
+    min-width: 40px; /* 최소 너비도 줄여줌 */
     height: 100%;
     border: 1px solid var(--input-border);
     border-radius: 8px; 
     background-color: var(--input-default-bg); 
-    padding: 0 5px; /* ✅ 안쪽 여백 축소 */
+    padding: 0 3px; /* ✅ 안쪽 여백 최소화 */
     text-align: center;
-    font-size: var(--price-text-font-size); /* ✅ 1억, 만원 텍스트와 동일하게 조정 */
+    font-size: 1.2em; /* ✅ 폰트 크기를 1.2em으로 더 크게 조정 */
     font-weight: 900;
     box-sizing: border-box;
 }
@@ -371,7 +371,7 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     align-items: center;
     justify-content: center;
     font-weight: 900; 
-    font-size: var(--price-text-font-size); /* ✅ 변수 적용 */
+    font-size: var(--price-text-font-size); 
     color: black; 
     background-color: transparent; 
     border: none; 
@@ -380,7 +380,7 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     padding: 0 0 0 5px; 
 }
 
-/* ✅ 동의 그룹 스타일 조정 (유지) */
+/* 동의 섹션 (유지) */
 .consent-section { 
     padding: 0 var(--content-padding);
     margin: 10px 0 25px 0; 
@@ -432,7 +432,8 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     /* 면허 희망가격 모바일 최적화 */
     .unified-price-input { max-width: 100%; }
     .unified-price-input .price-fixed-text,
-    .unified-price-input .price-unit-text { font-size: 1.0em; padding: 0 3px; /* 모바일에서 패딩 축소 */ }
+    .unified-price-input .price-unit-text { font-size: 1.0em; padding: 0 3px; }
+    .unified-price-input input { font-size: 1.1em; } /* 모바일에서 1.2em 대신 1.1em 적용 */
 }
 </style>
 </head>
@@ -447,12 +448,10 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     <p class="description">정보를 등록하시면 인근 시세에서 알림을 드립니다.</p>
     <div class="progress-bar-container">
         <div class="step-indicator active" id="indicator1">
-            <div class="step-circle">1</div>
-            <div class="step-text">연락정보</div>
+            <div class="step-circle">1단계</div> <div class="step-text">연락정보</div>
         </div>
         <div class="step-indicator" id="indicator2">
-            <div class="step-circle">2</div>
-            <div class="step-text">판매희망가 정보</div> 
+            <div class="step-circle">2단계</div> <div class="step-text">판매희망가 정보</div> 
         </div>
     </div>
 </div>
@@ -516,7 +515,9 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
                         id="carNumPart1"
                         name="car_num_part1_display"
                         required
-                        placeholder="2자리" maxlength="2"       inputmode="numeric"
+                        placeholder="2자리" 
+                        maxlength="2"       
+                        inputmode="numeric"
                         class="num-part data-input-field">
                     <div class="select-box car-hangul-box">
                         <select id="carHangulSelect" required class="select-field">
@@ -619,7 +620,6 @@ function checkCompletion(element) {
             const phoneValue = element.value.replace(/[^0-9]/g, '');
             isCompleted = phoneValue.length === 8;
         } else if (element.id === 'carNumPart1') {
-            // ✅ 길이 2자리로 체크
             isCompleted = element.value.trim().length === 2; 
         } else if (element.id === 'carNumPart2') {
             isCompleted = element.value.trim().length === 4;
@@ -805,7 +805,6 @@ phoneInput.addEventListener('input', function(e) {
 });
 
 carNumPart1.addEventListener('input', function(e) {
-    // ✅ slice(0, 2)로 변경
     e.target.value = e.target.value.replace(/[^0-9]/g, '').slice(0, 2); 
     checkCompletion(e.target);
 });
