@@ -271,82 +271,81 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
 #carNumPart1 { flex: 2; max-width: 80px; }
 #carNumPart2 { flex: 3; min-width: 90px; }
 .car-number-split-wrapper .car-hangul-box { flex: 2; min-width: 60px; }
+/* ✅ '선택' 드롭다운 텍스트 왼쪽 정렬 */
+.car-number-split-wrapper .car-hangul-box select {
+    text-align: left !important;
+    padding-left: 10px !important;
+}
 
 
-/* ✅ 면허 판매 희망가격 관련 스타일 */
+/* ✅ 면허 판매 희망가격 관련 스타일 (단일 입력 박스 통합) */
 .price-input-group {
     display: flex;
     justify-content: center; 
     align-items: center;
-    gap: 0;
     width: 100%;
 }
-.price-unit-box {
-    height: var(--base-field-height);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    flex-shrink: 0;
-    font-size: var(--label-font-size);
-    line-height: 1;
-    padding: 0 5px;
-    box-sizing: border-box;
-    /* 배경/테두리 제거 */
-    background: none !important;
-    border: none !important;
-}
-
-/* 1억 텍스트 스타일 */
-.price-unit-box.fixed-text {
-    color: #000; /* 검정색 */
-    font-weight: 900; /* 진하게 */
-    border-radius: 0; 
-    padding-right: 10px;
-    font-size: 1.1em;
-}
-
-/* 입력 필드 wrapper 스타일: 둥근 네모 통합 */
-.price-input-wrapper {
+/* 통합된 하나의 둥근 모서리 박스 */
+.unified-price-input {
     display: flex;
     align-items: center;
     height: var(--base-field-height);
-    flex-grow: 1;
-    max-width: 180px;
-    margin: 0;
+    width: 100%; /* 너비 100%로 설정 */
+    max-width: 250px; /* 적절한 최대 너비 설정 (조정 가능) */
     border: 2px solid var(--input-border); 
     border-radius: 10px; 
     overflow: hidden;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    background-color: var(--input-default-bg); /* 기본 배경색 */
 }
-.price-input-wrapper input {
+
+/* '1억' 텍스트 */
+.unified-price-input .price-fixed-text {
+    flex-shrink: 0;
+    padding: 0 10px;
+    color: #000;
+    font-weight: 900;
+    font-size: 1.1em;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* 숫자 입력 필드 */
+.unified-price-input input {
     flex-grow: 1;
     min-width: 60px;
-    text-align: left !important; 
-    padding: 0 5px; 
-    border-radius: 0;
+    height: 100%;
     border: none;
-    background-color: var(--input-default-bg) !important;
+    background-color: transparent; /* 통합 박스의 배경색 사용 */
+    padding: 0 5px;
+    font-size: var(--base-font-size);
     font-weight: 900;
+    color: var(--text-color);
+    outline: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+/* 입력 완료 시 배경색 */
+.unified-price-input input.completed {
+    background-color: var(--input-filled-bg);
 }
 
-/* '만원' 박스 스타일 (1억과 동일한 폰트 속성 적용) */
-.price-unit-box.embedded-unit {
-    color: #000; /* 검정색 */
-    font-weight: 900; /* 진하게 */
-    justify-content: flex-start;
-    padding-left: 0;
-    padding-right: 10px;
-    font-size: 1.1em; /* 1억과 동일한 크기 */
+/* '만원' 텍스트 */
+.unified-price-input .price-unit-text {
+    flex-shrink: 0;
+    padding: 0 10px;
+    color: #000;
+    font-weight: 900;
+    font-size: 1.1em;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
-/* 입력 완료 시 배경색 변경 (흰색) (유지) */
-.price-input-wrapper input.completed {
-    background-color: var(--input-filled-bg) !important;
-}
-
-
-/* ✅ 시세 알림 신청 관련 스타일 (예/아니오 동일하게 변경) */
+/* ✅ 시세 알림 신청 관련 스타일 (예/아니오 동일하게 변경) (유지) */
 .radio-group.alert-option {
     display: flex;
     gap: 10px;
@@ -442,9 +441,9 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     .split-unit-wrapper input { min-width: 70px; }
     
     /* 면허 희망가격 모바일 최적화 */
-    .price-input-wrapper { max-width: 160px; } 
-    .price-unit-box.fixed-text { font-size: 1.0em; }
-    .price-unit-box.embedded-unit { font-size: 1.0em; padding-right: 5px; } /* 1억과 동일한 크기 */
+    .unified-price-input { max-width: 220px; } /* 조정 가능 */
+    .unified-price-input .price-fixed-text,
+    .unified-price-input .price-unit-text { font-size: 1.0em; padding: 0 8px; }
     
     .radio-group.alert-option .radio-label { max-width: none; }
 }
@@ -556,16 +555,17 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
             <label>면허판매 희망가격</label>
             <div class="input-field-wrapper">
                 <div class="price-input-group">
-                    <span class="price-unit-box fixed-text">1억</span>
-                    <div class="price-input-wrapper">
+                    <div class="unified-price-input">
+                        <span class="price-fixed-text">1억</span>
                         <input type="text"
                             id="licensePriceInput"
                             name="license_price_display"
-                            placeholder="숫자입력" inputmode="numeric"
+                            placeholder="숫자입력"
+                            inputmode="numeric"
                             maxlength="4"
                             class="data-input-field"
                             required>
-                        <span class="price-unit-box embedded-unit">만원</span>
+                        <span class="price-unit-text">만원</span>
                     </div>
                 </div>
             </div>
@@ -576,8 +576,10 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
             <div class="input-field-wrapper">
                 <div class="radio-group alert-option">
                     <input type="radio" id="alert_yes" name="entry.375840374" value="예" required>
-                    <label for="alert_yes" class="radio-label">예</label> <input type="radio" id="alert_no" name="entry.375840374" value="아니오">
-                    <label for="alert_no" class="radio-label">아니오</label> </div>
+                    <label for="alert_yes" class="radio-label">예</label> 
+                    <input type="radio" id="alert_no" name="entry.375840374" value="아니오">
+                    <label for="alert_no" class="radio-label">아니오</label> 
+                </div>
             </div>
         </div>
         
@@ -657,8 +659,15 @@ function checkCompletion(element) {
 
     if (isCompleted) {
         element.classList.add('completed');
+        // 가격 입력 필드일 경우, 부모 요소의 배경도 업데이트 (통합 입력 박스)
+        if (element.id === 'licensePriceInput') {
+            element.parentElement.classList.add('completed');
+        }
     } else {
         element.classList.remove('completed');
+        if (element.id === 'licensePriceInput') {
+            element.parentElement.classList.remove('completed');
+        }
     }
 }
 
