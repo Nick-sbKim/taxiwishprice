@@ -87,7 +87,20 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
 .progress-bar-container { display: flex; justify-content: space-between; align-items: center; position: relative; margin-bottom: 30px; padding: 0 20px; }
 .progress-bar-container::before { content: ''; position: absolute; top: 15px; left: 50%; transform: translate(-50%, -50%); width: calc(100% - 80px); height: 4px; background-color: var(--light-border-color); z-index: 0; }
 .step-indicator { text-align: center; position: relative; z-index: 1; color: var(--secondary-text-color); font-size: 0.9em; font-weight: 600; }
-.step-circle { width: 30px; height: 30px; border-radius: 50%; background-color: #EEEEEE; color: #757575; display: flex; justify-content: center; align-items: center; margin: 0 auto 5px; font-weight: 800; border: 2px solid #BDBDBD; transition: all 0.3s; }
+.step-circle { 
+    width: 30px; 
+    height: 30px; 
+    border-radius: 8px; 
+    background-color: #EEEEEE; 
+    color: #757575; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;     
+    margin: 0 auto 5px; 
+    font-weight: 800; 
+    border: 2px solid #BDBDBD; 
+    transition: all 0.3s; 
+}
 .step-indicator.active .step-circle { background-color: var(--main-color); color: white; border-color: var(--main-color); box-shadow: 0 0 0 5px rgba(25, 118, 210, 0.2); }
 .step-indicator.active .step-text { color: var(--main-color); }
 .step-indicator.completed .step-circle { background-color: #E0E0E0; color: white; border-color: #E0E0E0; }
@@ -278,13 +291,13 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
 }
 
 
-/* ✅ 면허 판매 희망가격 관련 스타일 (유지) */
+/* ✅ 면허 판매 희망가격 관련 스타일 (수정 반영) */
 .price-input-group {
     display: flex;
     justify-content: center; 
     align-items: center;
     width: 100%;
-    gap: 0; /* 분리된 요소 간 간격 제거 */
+    gap: 0; 
 }
 
 .unified-price-input {
@@ -317,9 +330,10 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     padding: 0 5px 0 0; 
 }
 
-/* 숫자 입력 필드 */
+/* 숫자 입력 필드 (너비 50% 적용) */
 .unified-price-input input {
-    flex-grow: 0.8; 
+    width: 50%; /* ✅ 너비를 50%로 고정 */
+    flex-grow: 0; /* flex-grow 속성 제거 */
     min-width: 60px;
     height: 100%;
     border: 1px solid var(--input-border);
@@ -353,22 +367,14 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     padding: 0 0 0 5px; 
 }
 
-/* ✅ 시세 알림 신청 관련 스타일 (삭제되었지만 혹시 모를 대비를 위해 주석 처리) */
-/*
-.radio-group.alert-option { ... }
-.radio-group.alert-option .radio-label { ... }
-.radio-group.alert-option input[type="radio"] { ... }
-.radio-group.alert-option input[value="예"] + .radio-label { ... }
-.radio-group.alert-option input[value="예"]:checked + .radio-label { ... }
-.radio-group.alert-option input[value="아니오"] + .radio-label { ... }
-.radio-group.alert-option input[value="아니오"]:checked + .radio-label { ... }
-*/
-
 /* ✅ 동의 그룹 스타일 조정 (유지) */
+.consent-section { 
+    padding: 0 var(--content-padding);
+    margin: 10px 0 25px 0; 
+}
 .consent-group {
     display: flex;
     align-items: center;
-    margin-top: 15px; /* 시세알림 항목 제거 후 간격 조정 */
     margin-bottom: 15px;
     font-size: 1.1em;
 }
@@ -389,9 +395,10 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     color: #757575;
     max-height: 100px;
     overflow-y: auto;
-    margin-bottom: 20px;
+    margin-bottom: 0; 
 }
-.consent-details strong { color: var(--main-color); }
+
+.footer-content { padding: 0 var(--content-padding) 25px; }
 .button-group { display: flex; gap: 10px; margin-top: 25px; }
 .prev-btn { width: 50px; padding: 15px 10px; background-color: #CFD8DC; color: var(--text-color); border: none; border-radius: 10px; font-size: 1.5em; font-weight: 700; cursor: pointer; flex-shrink: 0; display: flex; justify-content: center; align-items: center; line-height: 1; }
 #nextBtn, #submitBtn { flex-grow: 1; padding: 18px 20px; background-color: var(--main-color); color: white; border: none; border-radius: 10px; font-size: 1.3em; font-weight: 800; cursor: pointer; box-shadow: 0 4px 10px rgba(25, 118, 210, 0.4); }
@@ -432,7 +439,7 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
         </div>
         <div class="step-indicator" id="indicator2">
             <div class="step-circle">2</div>
-            <div class="step-text">판매/알림 정보</div>
+            <div class="step-text">판매희망가 정보</div> 
         </div>
     </div>
 </div>
@@ -444,7 +451,10 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
 <input type="hidden" id="phoneHidden" name="entry.1565385945" value="">
 <input type="hidden" id="carNumberHidden" name="entry.1961657672" value="">
 <input type="hidden" id="consentHidden" name="entry.1204688294" value="" required>
-<input type="hidden" name="entry.375840374" value="예"> <div class="step active" id="step1">
+<input type="hidden" name="entry.375840374" value="예"> 
+
+
+<div class="step active" id="step1">
     <div class="step-content">
         <div class="section-title">1. 연락정보 입력</div>
         <div class="input-group">
@@ -482,7 +492,7 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
 
 <div class="step" id="step2">
     <div class="step-content">
-        <div class="section-title">2. 판매/알림 정보 입력</div>
+        <div class="section-title">2. 판매희망가 입력</div>
 
         <div class="input-group car-number-group stack-label-group">
             <label>차량번호 입력 (예시 : 서울30아1234)</label>
@@ -536,7 +546,9 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
                 </div>
             </div>
         </div>
-        
+    </div>
+    
+    <div class="consent-section">
         <div class="consent-group">
             <input type="checkbox" id="consent" required>
             <label for="consent" class="consent-label">개인정보 수집 및 이용에 동의합니다.</label>
@@ -549,8 +561,8 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
             <p>4. 동의 거부 시 불이익: 상기 개인정보 수집 및 이용에 동의하지 않을 경우, 가격 등록 및 알림 신청 서비스가 제한될 수 있습니다.</p>
             <p>※ 추가 내용: 본 서비스는 귀하의 등록 정보를 바탕으로 인근 시세 정보를 제공하며, 최종 거래 가격은 시장 상황 및 개별 협상에 따라 달라질 수 있습니다. 제공된 정보가 허위일 경우, 알림 서비스가 중단될 수 있습니다.</p>
         </div>
-        
     </div>
+    
     <div class="footer-content">
         <div class="button-group">
             <button type="button" class="prev-btn" onclick="prevStep(2)">&#8592;</button>
@@ -577,14 +589,11 @@ const carNumberHidden = document.getElementById('carNumberHidden');
 const consentCheckbox = document.getElementById('consent');
 const consentHidden = document.getElementById('consentHidden');
 
-// ✅ 가격 입력 필드 및 Hidden 필드
 const licensePriceInput = document.getElementById('licensePriceInput');
 const licensePriceHidden = document.createElement('input'); 
 licensePriceHidden.type = 'hidden';
 licensePriceHidden.name = 'entry.770593956';
 document.getElementById('carForm').appendChild(licensePriceHidden);
-
-// 시세 알림 라디오 버튼은 삭제되었으므로 관련 코드를 제거함
 
 /**
 * 필드 값이 완료되었는지 확인하고 배경색을 업데이트합니다.
@@ -653,12 +662,9 @@ document.getElementById('carForm').addEventListener('submit', function(event) {
     }
 
     // 최종 데이터 설정
-    // 시세 알림 신청 항목 (entry.375840374)은 hidden input을 통해 '예'로 고정 전송됨
-    
-    // 개인정보 동의는 체크박스로 확인하고 hidden 필드에 값 설정
     consentHidden.value = consentCheckbox.checked ? '예' : '아니오';
 
-    // ✅ 가격 Hidden 필드에 값 설정
+    // 가격 Hidden 필드에 값 설정
     licensePriceHidden.value = `1억 ${licensePriceInput.value.trim()}만원`;
 
     const part1Value = carNumPart1.value.trim();
