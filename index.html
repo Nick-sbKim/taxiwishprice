@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>면허판매 희망가 등록/알림신청</title>
+<title>면허 판매 희망가 등록 서비스</title>
 <style>
 /* 폰트 임포트: 나눔스퀘어 Bold 폰트 적용 */
 @import url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquare.woff');
@@ -14,7 +14,8 @@
     --input-gap: 5px;
     --input-padding-vertical: 12px;
     --mobile-breakpoint: 600px;
-    --input-margin-bottom: 25px;
+    /* ✅ 입력 그룹 하단 마진 확대 */
+    --input-margin-bottom: 35px;
 
     /* --- 🎨 Theme Colors --- */
     --main-color: #1976D2;
@@ -39,8 +40,8 @@
     --base-field-height: 50px;
     --label-height: 25px;
 
-    /* 항목 이름 폰트 크기 */
-    --label-font-size: 1.05em;
+    /* ✅ 항목 이름 폰트 크기 확대 */
+    --label-font-size: 1.15em;
     --base-font-size: 0.95em;
     --input-text-font-weight: 600;
     --label-font-weight: 700;
@@ -51,7 +52,7 @@
     --price-input-border: #E0E0E0; 
 
     /* 신규 추가: 희망가격 텍스트 폰트 사이즈 */
-    --price-text-font-size: 1.1em; 
+    --price-text-font-size: 1.2em; /* 1억, 만원 텍스트 크기 */
 
     /* 돋보기 효과 상수 */
     --focus-font-size: 1.25em; /* 확대될 폰트 크기 */
@@ -74,7 +75,16 @@ body {
 }
 .container { background-color: rgba(255, 255, 255, 0.95); padding: 0; border-radius: 15px; width: 100%; max-width: 500px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); border: 2px solid var(--light-border-color); overflow: hidden; }
 .header-content { padding: 25px var(--content-padding) 10px; }
-h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800; color: var(--main-color); line-height: 1.2; }
+/* ✅ 제목 폰트 크기 조정 */
+h1 { 
+    text-align: center; 
+    margin-bottom: 10px; 
+    font-size: 1.5em; 
+    font-weight: 800; 
+    color: var(--main-color); 
+    line-height: 1.2; 
+}
+/* ✅ 설명 수정 */
 .description {
     text-align: center;
     font-size: 1.0em;
@@ -87,24 +97,8 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
 .step { display: none; }
 .step.active { display: block; }
 .step-content { padding: 20px var(--content-padding); margin: 0 var(--content-padding) 20px var(--content-padding); border-radius: 10px; border: 1px solid var(--input-border); background-color: #F8F8F8; }
-/* ✅ 섹션 제목 수정 */
 .section-title { font-size: 1.2em; font-weight: 800; color: var(--label-color); margin-bottom: 25px; padding-bottom: 5px; border-bottom: 1px dashed #BDBDBD; }
 
-/* ----------------------------------- */
-/* 희망 가격 안내 문구 스타일 추가 */
-/* ----------------------------------- */
-.price-instruction {
-    text-align: center;
-    color: #FF8800; /* 주황색 */
-    font-weight: 800;
-    font-size: 0.95em;
-    margin-bottom: 15px;
-    padding: 10px;
-    background-color: #FFF3E0; /* 연한 주황색 배경 */
-    border-radius: 6px;
-    border: 1px solid #FFCC80;
-    line-height: 1.4;
-}
 
 /* ----------------------------------- */
 /* 일반 입력 필드 스타일 (돋보기 효과 유지) */
@@ -112,6 +106,7 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
 .input-group {
     display: flex;
     flex-wrap: wrap;
+    /* ✅ 상수 적용 */
     margin-bottom: var(--input-margin-bottom);
     position: relative;
     align-items: center;
@@ -119,6 +114,7 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
 .input-group label {
     width: 100px;
     flex-shrink: 0;
+    /* ✅ 폰트 크기 확대 */
     font-size: var(--label-font-size);
     font-weight: var(--label-font-weight);
     color: var(--label-color);
@@ -138,6 +134,8 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
 .input-group.stack-label-group {
     flex-direction: column;
     align-items: flex-start;
+    /* ✅ 하단 마진 증가 */
+    margin-bottom: var(--input-margin-bottom);
 }
 .input-group.stack-label-group label {
     width: 100%;
@@ -146,6 +144,7 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     align-items: center;
     text-align: center;
     padding: 0;
+    /* ✅ 폰트 크기 확대 */
     font-size: var(--label-font-size);
 }
 .input-group.stack-label-group .input-field-wrapper {
@@ -185,7 +184,7 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     text-align: center;
 }
 
-/* ✅ 돋보기 효과 재적용 */
+/* 돋보기 효과 재적용 (입력 중 - 노란색 배경) */
 .data-input-field:focus,
 .select-field:focus {
     font-size: var(--focus-font-size) !important; 
@@ -194,10 +193,10 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     line-height: calc(var(--base-field-height) + 10px) !important; 
     font-weight: 800 !important; 
     box-shadow: 0 0 10px rgba(25, 118, 210, 0.5); /* 쉐도우 추가 */
-    background-color: var(--input-default-bg) !important; /* 입력 중에는 노란색 유지 */
+    background-color: var(--input-default-bg) !important; 
 }
 
-/* ✅ 완료 시 배경색 (돋보기 해제 시) */
+/* 완료 시 배경색 (돋보기 해제 시 - 흰색 배경) */
 .data-input-field.completed,
 .select-field.completed {
     background-color: var(--input-filled-bg) !important;
@@ -207,7 +206,6 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     line-height: var(--base-field-height) !important;
     font-weight: var(--input-text-font-weight) !important;
 }
-
 
 /* Select Box 드롭다운 아이콘 설정 */
 .select-box, .car-hangul-box { position: relative; }
@@ -244,7 +242,7 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     line-height: var(--base-field-height);
     background-color: var(--input-default-bg) !important;
 }
-/* ✅ 전화번호 입력 필드 포커스 시 돋보기 효과 재적용 */
+/* 전화번호 입력 필드 포커스 시 돋보기 효과 재적용 */
 .split-unit-wrapper input:focus {
     font-size: var(--focus-font-size) !important;
     font-weight: 800 !important;
@@ -306,7 +304,7 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     padding-left: 10px !important;
 }
 
-/* 면허 판매 희망가격 관련 스타일 (유지) */
+/* 면허 판매 희망가격 관련 스타일 */
 .price-input-group {
     display: flex;
     justify-content: center; 
@@ -333,6 +331,7 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     align-items: center;
     justify-content: center;
     font-weight: 900; 
+    /* ✅ 1억 텍스트 폰트 크기 조정 */
     font-size: var(--price-text-font-size); 
     color: black; 
     background-color: transparent; 
@@ -355,7 +354,7 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     font-weight: 900;
     box-sizing: border-box;
 }
-/* ✅ 가격 입력 필드 포커스 시 돋보기 효과 재적용 */
+/* 가격 입력 필드 포커스 시 돋보기 효과 재적용 */
 .unified-price-input input:focus {
     font-size: 1.5em !important; 
     padding: 0 3px !important; 
@@ -366,10 +365,11 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     background-color: var(--input-default-bg) !important;
 }
 
-/* 입력 완료 시 배경색 */
+/* ✅ 입력 완료 시 폰트 크기 조정 */
 .unified-price-input input.completed {
     background-color: var(--input-filled-bg) !important;
-    font-size: 1.2em !important; 
+    /* ✅ 1억 텍스트와 동일하게 키움 */
+    font-size: var(--price-text-font-size) !important; 
     font-weight: 900 !important;
 }
 
@@ -380,6 +380,7 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     align-items: center;
     justify-content: center;
     font-weight: 900; 
+    /* ✅ 만원 텍스트 폰트 크기 조정 */
     font-size: var(--price-text-font-size); 
     color: black; 
     background-color: transparent; 
@@ -462,9 +463,9 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     method="POST"
     target="hidden_iframe">
 <div class="header-content">
-    <h1>면허판매 희망가 등록/알림신청</h1>
-    <p class="description">정보등록 후, 편하게 기다리시면 자동으로 알려드립니다.</p>
-    </div>
+    <h1>면허 판매 희망가 등록 서비스</h1>
+    <p class="description">시세가 희망가 도달 전에 알려드립니다.</p>
+</div>
 <input type="hidden" name="fvv" value="1">
 <input type="hidden" name="pageHistory" value="0">
 <input type="hidden" name="fbzx" value="3762433657792349989">
@@ -478,7 +479,8 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
 
 <div class="step active" id="step1">
     <div class="step-content">
-        <div class="section-title">1단계 : 연락정보 입력</div> <div class="input-group">
+        <div class="section-title">1단계 : 연락정보 입력</div> 
+        <div class="input-group">
             <label for="name">성함</label>
             <div class="input-field-wrapper">
                 <input type="text"
@@ -513,7 +515,9 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
 
 <div class="step" id="step2">
     <div class="step-content">
-        <div class="section-title">2단계 : 판매희망가 입력</div> <div class="input-group car-number-group stack-label-group">
+        <div class="section-title">2단계 : 판매희망가 입력</div> 
+
+        <div class="input-group car-number-group stack-label-group">
             <label>차량번호 입력 (예시 : 서울30아1234)</label>
             <div class="input-field-wrapper">
                 <div class="car-number-split-wrapper">
@@ -548,8 +552,7 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
         </div>
 
         <div class="input-group stack-label-group">
-            <label>면허판매 희망가격</label>
-            <p class="price-instruction">차량가격이 포함되지 않은 **면허가격**만을 기재해주세요</p> 
+            <label>면허판매 희망가(**차량가격 제외**)</label>
             <div class="input-field-wrapper">
                 <div class="price-input-group">
                     <div class="unified-price-input">
@@ -576,7 +579,7 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
         </div>
         <div class="consent-details">
             <p><strong>[개인정보수집 및 이용동의 상세]</strong></p>
-            <p>1. 수집 항목: 성함, 휴대폰 번호, 차량번호, 면허판매 희망가격, 알림신청 여부</p>
+            <p>1. 수집 항목: 성함, 휴대폰 번호, 차량번호, 면허판매 희망가격</p>
             <p>2. 수집 목적: 택시면허 시세 변동 알림 및 판매 상담 진행</p>
             <p>3. 보유 및 이용 기간: 동의일로부터 3년 (알림 및 상담 종료 후 지체 없이 파기)</p>
             <p>4. 동의 거부 시 불이익: 상기 개인정보 수집 및 이용에 동의하지 않을 경우, 가격 등록 및 알림 신청 서비스가 제한될 수 있습니다.</p>
