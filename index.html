@@ -48,10 +48,7 @@
     /* ✅ 신규 추가: 시세 알림 버튼용 색상 */
     --accent-color: #FFEB3B; 
     /* ✅ 신규 추가: 가격 입력 필드용 색상 */
-    --price-fixed-bg: #117864; /* 짙은 초록 */
-    --price-fixed-text: white;
-    --price-unit-bg: #E0E0E0; /* 밝은 회색 */
-    --price-unit-text: #333;
+    --price-input-border: #E0E0E0; /* 입력 필드 경계선 */
 }
 /* ************************************************************ */
 /* 기본 설정 */
@@ -248,7 +245,6 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
 
 /* ✅ 면허 판매 희망가격 관련 스타일 (요청 반영) */
 .price-input-group {
-    /* 중앙 정렬을 위해 너비 100%를 가진 컨테이너 안에서 가운데 배치 */
     display: flex;
     justify-content: center; 
     align-items: center;
@@ -256,7 +252,6 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     width: 100%;
 }
 .price-unit-box {
-    /* 공통 스타일: 높이 설정 */
     height: var(--base-field-height);
     display: flex;
     align-items: center;
@@ -265,60 +260,66 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     flex-shrink: 0;
     font-size: var(--label-font-size);
     line-height: 1;
-    padding: 0 15px;
+    padding: 0 5px; /* 패딩 감소 */
     box-sizing: border-box;
+    /* 배경/테두리 제거 */
+    background: none !important;
+    border: none !important;
 }
 
-/* 1억 박스 스타일 */
+/* 1억 텍스트 스타일 */
 .price-unit-box.fixed-text {
-    background-color: var(--price-fixed-bg);
-    color: var(--price-fixed-text);
-    border-radius: 8px 0 0 8px; /* 왼쪽 둥글게 */
-    /* 너비 조정 */
-    width: 70px;
+    color: #000; /* 검정색 */
+    font-weight: 900; /* 진하게 */
+    /* 둥근 테두리 및 배경 제거 */
+    border-radius: 0; 
+    padding-right: 10px;
+    font-size: 1.1em;
 }
 
-/* 입력 필드 wrapper 스타일 */
+/* 입력 필드 wrapper 스타일: 둥근 네모 통합 */
 .price-input-wrapper {
     display: flex;
     align-items: center;
     height: var(--base-field-height);
     flex-grow: 1;
-    max-width: 160px; /* 입력 필드 + '만원' 박스의 최대 너비 */
+    max-width: 180px; /* 입력 필드 + '만원' 박스의 최대 너비 */
     margin: 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* 둥근 네모 테두리 통합 */
+    border: 2px solid var(--input-border); 
+    border-radius: 10px; 
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 .price-input-wrapper input {
     flex-grow: 1;
     min-width: 60px;
-    text-align: center !important; /* 중앙 정렬 */
+    text-align: left !important; /* 숫자 입력란 왼쪽 정렬 */
     padding: 0 5px; 
     border-radius: 0;
-    border: 1px solid var(--input-border);
-    border-right: none; /* 단위 박스와 연결 */
+    border: none; /* 통합 wrapper가 테두리 역할 */
     background-color: var(--input-default-bg) !important;
+    font-weight: 900;
 }
 
 /* '만원' 박스 스타일 */
 .price-unit-box.embedded-unit {
-    background-color: var(--price-unit-bg);
-    color: var(--price-unit-text);
-    border-radius: 0 8px 8px 0; /* 오른쪽 둥글게 */
-    width: 60px;
-    font-size: var(--base-font-size);
+    color: var(--text-color);
     font-weight: 700;
-    padding: 0 10px;
+    /* 왼쪽 정렬 */
+    justify-content: flex-start;
+    padding-left: 0; /* 입력 필드에 붙임 */
+    padding-right: 10px;
+    font-size: var(--base-font-size);
 }
+
 /* 입력 완료 시 배경색 변경 (흰색) */
 .price-input-wrapper input.completed {
     background-color: var(--input-filled-bg) !important;
 }
-.price-input-wrapper input.completed + .embedded-unit {
-    background-color: var(--price-unit-bg) !important; /* '만원' 박스는 배경색 유지 */
-}
 
 
-/* ✅ 시세 알림 신청 관련 스타일 (유지) */
+/* ✅ 시세 알림 신청 관련 스타일 (요청 반영) */
 .radio-group.alert-option {
     display: flex;
     gap: 10px;
@@ -326,7 +327,7 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
 }
 .radio-group.alert-option .radio-label {
     flex: 1;
-    max-width: 150px; /* 버튼 최대 너비 제한 */
+    max-width: 150px;
     height: var(--base-field-height);
     display: flex;
     justify-content: center;
@@ -336,7 +337,7 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     font-weight: 700;
     cursor: pointer;
     border: 2px solid #CFD8DC;
-    background-color: #ECEFF1;
+    background-color: white; /* 기본 흰색 배경 */
     color: var(--text-color);
     transition: all 0.2s;
 }
@@ -354,11 +355,18 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     color: var(--text-color);
     box-shadow: 0 4px 10px rgba(255, 235, 59, 0.5);
 }
-.radio-group.alert-option input[value="아니오"]:checked + .radio-label {
-    border-color: #B0BEC5;
-    background-color: #B0BEC5;
-    color: white;
+/* '아니오' 버튼 선택/비선택 시 흰색 유지 */
+.radio-group.alert-option input[value="아니오"] + .radio-label {
+    background-color: white; 
+    border-color: #CFD8DC;
+    color: var(--text-color);
 }
+.radio-group.alert-option input[value="아니오"]:checked + .radio-label {
+    border-color: var(--text-color); /* 선택 시 테두리색만 검게 */
+    background-color: white;
+    color: var(--text-color);
+}
+
 
 /* 기타 스타일 */
 .footer-content { padding: 0 var(--content-padding) 25px; }
@@ -399,16 +407,16 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     .input-group:not(.stack-label-group) .input-field-wrapper { width: 100%; }
 
     .car-number-split-wrapper { flex-wrap: nowrap; gap: 5px; }
-    .car-number-split-wrapper .fixed-unit-button { width: 45px; font-size: var(--base-font-size); padding: 0 5px; flex-grow: 0; }
+    .car-number-split-wrapper .fixed-unit-button { width: 45px; font-size: var(--base-font-size); flex-grow: 0; }
     #carNumPart1 { max-width: none; flex: 2.5; }
     .car-number-split-wrapper .car-hangul-box { max-width: none; flex: 2; }
     #carNumPart2 { max-width: none; flex: 4; }
     .split-unit-wrapper input { min-width: 70px; }
     
     /* 면허 희망가격 모바일 최적화 */
-    .price-input-wrapper { max-width: 140px; } /* 입력 영역 너비 약간 축소 */
-    .price-unit-box.fixed-text { width: 60px; font-size: 1.0em; }
-    .price-unit-box.embedded-unit { width: 50px; font-size: 0.9em; }
+    .price-input-wrapper { max-width: 160px; } 
+    .price-unit-box.fixed-text { font-size: 1.0em; }
+    .price-unit-box.embedded-unit { font-size: 0.9em; padding-right: 5px; }
     
     .radio-group.alert-option .radio-label { max-width: none; }
 }
@@ -453,8 +461,7 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
                     id="name"
                     name="entry.107496198"
                     required
-                    placeholder="성함 입력"
-                    class="data-input-field">
+                    placeholder="홍길동" class="data-input-field">
             </div>
         </div>
         <div class="input-group">
@@ -466,8 +473,7 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
                         id="phone"
                         name="phone_display"
                         required
-                        placeholder="8자리 입력"
-                        inputmode="numeric"
+                        placeholder="1234-5678" inputmode="numeric"
                         maxlength="9"
                         class="phone-input-field data-input-field">
                 </div>
@@ -523,15 +529,14 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
             <label>면허판매 희망가격</label>
             <div class="input-field-wrapper">
                 <div class="price-input-group">
-                    <div class="price-unit-box fixed-text">1억</div>
+                    <span class="price-unit-box fixed-text">1억</span>
                     <div class="price-input-wrapper">
                         <input type="text"
                             id="licensePriceInput"
                             name="license_price_display"
                             placeholder="숫자입력"
                             inputmode="numeric"
-                            maxlength="3"
-                            class="data-input-field"
+                            maxlength="4" class="data-input-field"
                             required>
                         <span class="price-unit-box embedded-unit">만원</span>
                     </div>
@@ -547,12 +552,11 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
                     <label for="alert_yes" class="radio-label">예</label>
                     
                     <input type="radio" id="alert_no" name="entry.375840374" value="아니오">
-                    <label for="alert_no" class="radio-label">아니오</label>
-                </div>
+                    <label for="alert_no" class="radio-label">아니오</label> </div>
             </div>
         </div>
         
-        </div>
+    </div>
     <div class="footer-content">
         <div class="consent-group">
             <input type="checkbox" id="consent" required>
@@ -595,7 +599,7 @@ const consentHidden = document.getElementById('consentHidden');
 const licensePriceInput = document.getElementById('licensePriceInput');
 const licensePriceHidden = document.createElement('input'); 
 licensePriceHidden.type = 'hidden';
-licensePriceHidden.name = 'entry.770593956'; // 가격 entry.ID는 이전 응답과 동일하게 유지 (Google Forms URL이 같을 경우)
+licensePriceHidden.name = 'entry.770593956';
 document.getElementById('carForm').appendChild(licensePriceHidden);
 
 // ✅ 시세 알림 라디오 버튼 (name 속성으로 조회)
@@ -619,6 +623,7 @@ function checkCompletion(element) {
         } else if (element.id === 'name') {
             isCompleted = element.value.trim() !== '';
         } else if (element.id === 'licensePriceInput') {
+            // ✅ 최대 4자리 검증
             isCompleted = element.value.trim() !== '' && !isNaN(parseInt(element.value.trim()));
         }
     } else if (element.tagName === 'SELECT') {
@@ -808,9 +813,9 @@ carNumPart2.addEventListener('input', function(e) {
     checkCompletion(e.target);
 });
 
-// ✅ 면허 희망가격 입력 (숫자만/길이 제한)
+// ✅ 면허 희망가격 입력 (숫자만/길이 제한 4자리로 수정)
 licensePriceInput.addEventListener('input', function(e) {
-    e.target.value = e.target.value.replace(/[^0-9]/g, '').slice(0, 3);
+    e.target.value = e.target.value.replace(/[^0-9]/g, '').slice(0, 4);
     checkCompletion(e.target);
 });
 
