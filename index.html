@@ -14,7 +14,7 @@
     --input-gap: 5px;
     --input-padding-vertical: 12px;
     --mobile-breakpoint: 600px;
-    /* ✅ 입력 그룹 하단 마진 확대 */
+    /* 입력 그룹 하단 마진 확대 */
     --input-margin-bottom: 35px;
 
     /* --- 🎨 Theme Colors --- */
@@ -40,7 +40,7 @@
     --base-field-height: 50px;
     --label-height: 25px;
 
-    /* ✅ 항목 이름 폰트 크기 확대 */
+    /* 항목 이름 폰트 크기 확대 */
     --label-font-size: 1.15em;
     --base-font-size: 0.95em;
     --input-text-font-weight: 600;
@@ -51,8 +51,8 @@
     /* 신규 추가: 가격 입력 필드용 색상 */
     --price-input-border: #E0E0E0; 
 
-    /* 신규 추가: 희망가격 텍스트 폰트 사이즈 */
-    --price-text-font-size: 1.2em; /* 1억, 만원 텍스트 크기 */
+    /* 희망가격 텍스트 폰트 사이즈 (1억, 만원) */
+    --price-text-font-size: 1.2em; 
 
     /* 돋보기 효과 상수 */
     --focus-font-size: 1.25em; /* 확대될 폰트 크기 */
@@ -75,7 +75,6 @@ body {
 }
 .container { background-color: rgba(255, 255, 255, 0.95); padding: 0; border-radius: 15px; width: 100%; max-width: 500px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); border: 2px solid var(--light-border-color); overflow: hidden; }
 .header-content { padding: 25px var(--content-padding) 10px; }
-/* ✅ 제목 폰트 크기 조정 */
 h1 { 
     text-align: center; 
     margin-bottom: 10px; 
@@ -84,11 +83,11 @@ h1 {
     color: var(--main-color); 
     line-height: 1.2; 
 }
-/* ✅ 설명 수정 */
+/* ✅ 설명 문구 색상 변경 */
 .description {
     text-align: center;
     font-size: 1.0em;
-    color: var(--secondary-text-color);
+    color: red; /* 빨간색으로 변경 */
     margin-bottom: 25px;
     padding: 0 5px;
     font-weight: 600;
@@ -106,7 +105,7 @@ h1 {
 .input-group {
     display: flex;
     flex-wrap: wrap;
-    /* ✅ 상수 적용 */
+    /* 상수 적용 */
     margin-bottom: var(--input-margin-bottom);
     position: relative;
     align-items: center;
@@ -114,7 +113,7 @@ h1 {
 .input-group label {
     width: 100px;
     flex-shrink: 0;
-    /* ✅ 폰트 크기 확대 */
+    /* 폰트 크기 확대 */
     font-size: var(--label-font-size);
     font-weight: var(--label-font-weight);
     color: var(--label-color);
@@ -134,7 +133,7 @@ h1 {
 .input-group.stack-label-group {
     flex-direction: column;
     align-items: flex-start;
-    /* ✅ 하단 마진 증가 */
+    /* 하단 마진 증가 */
     margin-bottom: var(--input-margin-bottom);
 }
 .input-group.stack-label-group label {
@@ -144,7 +143,7 @@ h1 {
     align-items: center;
     text-align: center;
     padding: 0;
-    /* ✅ 폰트 크기 확대 */
+    /* 폰트 크기 확대 */
     font-size: var(--label-font-size);
 }
 .input-group.stack-label-group .input-field-wrapper {
@@ -172,9 +171,9 @@ h1 {
     transition: background-color 0.3s, font-size 0.3s, padding 0.3s;
 }
 
-/* 1단계 성함/전화번호 입력 필드는 왼쪽 정렬 유지 (입력된 데이터) */
+/* ✅ 성함, 전화번호 입력된 데이터도 가운데 정렬로 통일 */
 #name, #phone {
-    text-align: left !important;
+    text-align: center !important;
 }
 
 /* 플레이스홀더만 가운데 정렬 */
@@ -196,15 +195,16 @@ h1 {
     background-color: var(--input-default-bg) !important; 
 }
 
-/* 완료 시 배경색 (돋보기 해제 시 - 흰색 배경) */
+/* ✅ 완료 시 배경색 (흰색 배경) 및 폰트 크기 확대 */
 .data-input-field.completed,
 .select-field.completed {
     background-color: var(--input-filled-bg) !important;
-    font-size: var(--base-font-size) !important;
+    /* ✅ 1억 텍스트와 동일한 폰트 사이즈 적용 */
+    font-size: var(--price-text-font-size) !important; 
     padding: 0 10px !important;
     height: var(--base-field-height) !important;
     line-height: var(--base-field-height) !important;
-    font-weight: var(--input-text-font-weight) !important;
+    font-weight: 800 !important; /* 볼드하게 유지 */
 }
 
 /* Select Box 드롭다운 아이콘 설정 */
@@ -331,7 +331,7 @@ h1 {
     align-items: center;
     justify-content: center;
     font-weight: 900; 
-    /* ✅ 1억 텍스트 폰트 크기 조정 */
+    /* 1억 텍스트 폰트 크기 조정 */
     font-size: var(--price-text-font-size); 
     color: black; 
     background-color: transparent; 
@@ -365,10 +365,10 @@ h1 {
     background-color: var(--input-default-bg) !important;
 }
 
-/* ✅ 입력 완료 시 폰트 크기 조정 */
+/* 입력 완료 시 폰트 크기 조정 (희망가격 입력란) */
 .unified-price-input input.completed {
     background-color: var(--input-filled-bg) !important;
-    /* ✅ 1억 텍스트와 동일하게 키움 */
+    /* 1억 텍스트와 동일하게 키움 */
     font-size: var(--price-text-font-size) !important; 
     font-weight: 900 !important;
 }
@@ -380,7 +380,7 @@ h1 {
     align-items: center;
     justify-content: center;
     font-weight: 900; 
-    /* ✅ 만원 텍스트 폰트 크기 조정 */
+    /* 만원 텍스트 폰트 크기 조정 */
     font-size: var(--price-text-font-size); 
     color: black; 
     background-color: transparent; 
@@ -452,6 +452,10 @@ h1 {
     }
     .unified-price-input input:focus {
         font-size: 1.2em !important;
+    }
+    /* ✅ 모바일에서 완료된 필드 폰트 크기 조정 */
+    .data-input-field.completed {
+        font-size: 1.1em !important; 
     }
 }
 </style>
@@ -552,7 +556,8 @@ h1 {
         </div>
 
         <div class="input-group stack-label-group">
-            <label>면허판매 희망가(**차량가격 제외**)</label>
+            <label>면허판매 희망가(차량가격 제외)</label>
+            
             <div class="input-field-wrapper">
                 <div class="price-input-group">
                     <div class="unified-price-input">
