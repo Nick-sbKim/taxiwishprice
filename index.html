@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>택시면허 판매희망 가격등록 / 알림신청</title>
+<title>면허판매 희망가 등록/알림신청</title>
 <style>
 /* 폰트 임포트: 나눔스퀘어 Bold 폰트 적용 */
 @import url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquare.woff');
@@ -52,6 +52,10 @@
 
     /* 신규 추가: 희망가격 텍스트 폰트 사이즈 */
     --price-text-font-size: 1.1em; 
+
+    /* 돋보기 효과 상수 */
+    --focus-font-size: 1.25em; /* 확대될 폰트 크기 */
+    --focus-padding: 18px 10px; /* 포커스 시 패딩 */
 }
 /* ************************************************************ */
 /* 기본 설정 */
@@ -61,7 +65,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    min-height: 100vh;
+    min-height: 10vh;
     margin: 0;
     padding: 15px 10px;
     box-sizing: border-box;
@@ -83,46 +87,28 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
 .step { display: none; }
 .step.active { display: block; }
 .step-content { padding: 20px var(--content-padding); margin: 0 var(--content-padding) 20px var(--content-padding); border-radius: 10px; border: 1px solid var(--input-border); background-color: #F8F8F8; }
+/* ✅ 섹션 제목 수정 */
 .section-title { font-size: 1.2em; font-weight: 800; color: var(--label-color); margin-bottom: 25px; padding-bottom: 5px; border-bottom: 1px dashed #BDBDBD; }
 
 /* ----------------------------------- */
-/* 단계 안내 바 스타일 (라인 끝 조정 및 텍스트 중앙 정렬) */
+/* 희망 가격 안내 문구 스타일 추가 */
 /* ----------------------------------- */
-.progress-bar-container { display: flex; justify-content: space-between; align-items: center; position: relative; margin-bottom: 30px; padding: 0 20px; }
-.progress-bar-container::before { 
-    content: ''; 
-    position: absolute; 
-    top: 50%; 
-    transform: translateY(-50%); 
-    left: 20px; 
-    right: 20px; 
-    width: calc(100% - 40px); 
-    height: 4px; 
-    background-color: var(--light-border-color); 
-    z-index: 0; 
+.price-instruction {
+    text-align: center;
+    color: #FF8800; /* 주황색 */
+    font-weight: 800;
+    font-size: 0.95em;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #FFF3E0; /* 연한 주황색 배경 */
+    border-radius: 6px;
+    border: 1px solid #FFCC80;
+    line-height: 1.4;
 }
-.step-indicator { text-align: center; position: relative; z-index: 1; color: var(--secondary-text-color); font-size: 0.9em; font-weight: 600; }
-.step-circle { 
-    width: 60px; 
-    height: 30px; 
-    border-radius: 8px; 
-    background-color: #EEEEEE; 
-    color: #757575; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center;     
-    margin: 0 auto 5px; 
-    font-weight: 800; 
-    border: 2px solid #BDBDBD; 
-    transition: all 0.3s; 
-    line-height: 1; 
-    font-size: 0.9em; 
-}
-.step-indicator.active .step-circle { background-color: var(--main-color); color: white; border-color: var(--main-color); box-shadow: 0 0 0 5px rgba(25, 118, 210, 0.2); }
-.step-indicator.active .step-text { color: var(--main-color); }
-.step-indicator.completed .step-circle { background-color: #E0E0E0; color: white; border-color: #E0E0E0; }
+
 /* ----------------------------------- */
-/* 일반 입력 필드 스타일 (유지) */
+/* 일반 입력 필드 스타일 (돋보기 효과 유지) */
+/* ----------------------------------- */
 .input-group {
     display: flex;
     flex-wrap: wrap;
@@ -199,22 +185,27 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     text-align: center;
 }
 
-/* ✅ 완료 시 배경색: 흰색 (가장 중요한 부분) */
+/* ✅ 돋보기 효과 재적용 */
+.data-input-field:focus,
+.select-field:focus {
+    font-size: var(--focus-font-size) !important; 
+    padding: var(--focus-padding) !important;
+    height: calc(var(--base-field-height) + 10px) !important; /* 높이 약간 확대 */
+    line-height: calc(var(--base-field-height) + 10px) !important; 
+    font-weight: 800 !important; 
+    box-shadow: 0 0 10px rgba(25, 118, 210, 0.5); /* 쉐도우 추가 */
+    background-color: var(--input-default-bg) !important; /* 입력 중에는 노란색 유지 */
+}
+
+/* ✅ 완료 시 배경색 (돋보기 해제 시) */
 .data-input-field.completed,
 .select-field.completed {
     background-color: var(--input-filled-bg) !important;
-}
-
-/* ❌ 돋보기 효과 제거 (요청된 이미지 스타일) */
-/* 포커스 시에도 폰트 사이즈/패딩/박스 쉐도우 변화 없음 */
-.data-input-field:focus {
-    font-size: var(--base-font-size) !important; /* 기본 사이즈 유지 */
-    padding: 0 10px !important; /* 기본 패딩 유지 */
-    height: var(--base-field-height) !important; /* 기본 높이 유지 */
-    line-height: var(--base-field-height) !important; /* 기본 라인 높이 유지 */
-    font-weight: var(--input-text-font-weight) !important; /* 기본 굵기 유지 */
-    box-shadow: none !important; /* 박스 쉐도우 제거 */
-    background-color: var(--input-filled-bg) !important; /* 포커스 시 바로 완료된 배경색 */
+    font-size: var(--base-font-size) !important;
+    padding: 0 10px !important;
+    height: var(--base-field-height) !important;
+    line-height: var(--base-field-height) !important;
+    font-weight: var(--input-text-font-weight) !important;
 }
 
 
@@ -253,6 +244,14 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     line-height: var(--base-field-height);
     background-color: var(--input-default-bg) !important;
 }
+/* ✅ 전화번호 입력 필드 포커스 시 돋보기 효과 재적용 */
+.split-unit-wrapper input:focus {
+    font-size: var(--focus-font-size) !important;
+    font-weight: 800 !important;
+    padding: 0 10px !important; /* 좌우 패딩은 유지 */
+    background-color: var(--input-default-bg) !important;
+}
+
 .phone-unit-box {
     height: 100%;
     display: flex;
@@ -307,8 +306,7 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     padding-left: 10px !important;
 }
 
-
-/* 면허 판매 희망가격 관련 스타일 */
+/* 면허 판매 희망가격 관련 스타일 (유지) */
 .price-input-group {
     display: flex;
     justify-content: center; 
@@ -316,7 +314,6 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     width: 100%;
     gap: 0; 
 }
-
 .unified-price-input {
     display: flex;
     align-items: center;
@@ -329,8 +326,6 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     box-shadow: none;
     background-color: transparent;
 }
-
-/* '1억' 텍스트 */
 .unified-price-input .price-fixed-text {
     flex-shrink: 0;
     height: 100%;
@@ -346,10 +341,8 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     box-sizing: border-box;
     padding: 0 5px 0 0; 
 }
-
-/* 숫자 입력 필드 (너비 30%, 폰트 크기 1.2em로 더 확대, 패딩 최소화) */
 .unified-price-input input {
-    width: 30%; /* 너비를 30%로 추가 축소 */
+    width: 30%; 
     flex-grow: 0; 
     min-width: 40px; 
     height: 100%;
@@ -358,16 +351,28 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     background-color: var(--input-default-bg); 
     padding: 0 3px; 
     text-align: center;
-    font-size: 1.2em; /* 폰트 크기를 1.2em으로 더 크게 조정 */
+    font-size: 1.2em; 
     font-weight: 900;
     box-sizing: border-box;
 }
+/* ✅ 가격 입력 필드 포커스 시 돋보기 효과 재적용 */
+.unified-price-input input:focus {
+    font-size: 1.5em !important; 
+    padding: 0 3px !important; 
+    height: 100% !important;
+    line-height: 100% !important;
+    font-weight: 900 !important;
+    box-shadow: 0 0 10px rgba(25, 118, 210, 0.5); /* 쉐도우 추가 */
+    background-color: var(--input-default-bg) !important;
+}
+
 /* 입력 완료 시 배경색 */
 .unified-price-input input.completed {
     background-color: var(--input-filled-bg) !important;
+    font-size: 1.2em !important; 
+    font-weight: 900 !important;
 }
 
-/* '만원' 텍스트 */
 .unified-price-input .price-unit-text {
     flex-shrink: 0;
     height: 100%;
@@ -384,7 +389,7 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     padding: 0 0 0 5px; 
 }
 
-/* 동의 섹션 */
+/* 동의 섹션 (유지) */
 .consent-section { 
     padding: 0 var(--content-padding);
     margin: 10px 0 25px 0; 
@@ -420,7 +425,7 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
 .prev-btn { width: 50px; padding: 15px 10px; background-color: #CFD8DC; color: var(--text-color); border: none; border-radius: 10px; font-size: 1.5em; font-weight: 700; cursor: pointer; flex-shrink: 0; display: flex; justify-content: center; align-items: center; line-height: 1; }
 #nextBtn, #submitBtn { flex-grow: 1; padding: 18px 20px; background-color: var(--main-color); color: white; border: none; border-radius: 10px; font-size: 1.3em; font-weight: 800; cursor: pointer; box-shadow: 0 4px 10px rgba(25, 118, 210, 0.4); }
 
-/* 모바일 반응형 디자인 */
+/* 모바일 반응형 디자인 (유지) */
 @media (max-width: var(--mobile-breakpoint)) {
     .input-group:not(.stack-label-group) { flex-direction: column; align-items: flex-start; }
     .input-group:not(.stack-label-group) label { width: 100%; margin-bottom: 5px; line-height: 1.2; height: auto; padding: 0; }
@@ -438,6 +443,15 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     .unified-price-input .price-fixed-text,
     .unified-price-input .price-unit-text { font-size: 1.0em; padding: 0 3px; }
     .unified-price-input input { font-size: 1.1em; } 
+    /* 모바일 포커스 시 돋보기 크기 조정 */
+    .data-input-field:focus {
+        font-size: 1.1em !important;
+        height: var(--base-field-height) !important;
+        line-height: var(--base-field-height) !important;
+    }
+    .unified-price-input input:focus {
+        font-size: 1.2em !important;
+    }
 }
 </style>
 </head>
@@ -448,19 +462,9 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
     method="POST"
     target="hidden_iframe">
 <div class="header-content">
-    <h1>택시면허 판매희망 가격등록 / 알림신청</h1>
-    <p class="description">정보를 등록하시면 인근 시세에서 알림을 드립니다.</p>
-    <div class="progress-bar-container">
-        <div class="step-indicator active" id="indicator1">
-            <div class="step-circle">1단계</div> 
-            <div class="step-text">연락정보</div>
-        </div>
-        <div class="step-indicator" id="indicator2">
-            <div class="step-circle">2단계</div> 
-            <div class="step-text">판매희망가 정보</div> 
-        </div>
+    <h1>면허판매 희망가 등록/알림신청</h1>
+    <p class="description">정보등록 후, 편하게 기다리시면 자동으로 알려드립니다.</p>
     </div>
-</div>
 <input type="hidden" name="fvv" value="1">
 <input type="hidden" name="pageHistory" value="0">
 <input type="hidden" name="fbzx" value="3762433657792349989">
@@ -474,8 +478,7 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
 
 <div class="step active" id="step1">
     <div class="step-content">
-        <div class="section-title">1. 연락정보 입력</div>
-        <div class="input-group">
+        <div class="section-title">1단계 : 연락정보 입력</div> <div class="input-group">
             <label for="name">성함</label>
             <div class="input-field-wrapper">
                 <input type="text"
@@ -510,9 +513,7 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
 
 <div class="step" id="step2">
     <div class="step-content">
-        <div class="section-title">2. 판매희망가 입력</div>
-
-        <div class="input-group car-number-group stack-label-group">
+        <div class="section-title">2단계 : 판매희망가 입력</div> <div class="input-group car-number-group stack-label-group">
             <label>차량번호 입력 (예시 : 서울30아1234)</label>
             <div class="input-field-wrapper">
                 <div class="car-number-split-wrapper">
@@ -548,6 +549,7 @@ h1 { text-align: center; margin-bottom: 15px; font-size: 1.7em; font-weight: 800
 
         <div class="input-group stack-label-group">
             <label>면허판매 희망가격</label>
+            <p class="price-instruction">차량가격이 포함되지 않은 **면허가격**만을 기재해주세요</p> 
             <div class="input-field-wrapper">
                 <div class="price-input-group">
                     <div class="unified-price-input">
@@ -698,19 +700,10 @@ function updateStep(step) {
     currentStep = step;
     for (let i = 1; i <= totalSteps; i++) {
         const stepElement = document.getElementById(`step${i}`);
-        const indicatorElement = document.getElementById(`indicator${i}`);
         if (i === currentStep) {
             stepElement.classList.add('active');
-            indicatorElement.classList.add('active');
-            indicatorElement.classList.remove('completed');
         } else {
             stepElement.classList.remove('active');
-            indicatorElement.classList.remove('active');
-            if (i < currentStep) {
-                indicatorElement.classList.add('completed');
-            } else {
-                indicatorElement.classList.remove('completed');
-            }
         }
     }
     document.querySelector('.container').scrollTop = 0;
@@ -789,16 +782,32 @@ const selectFields = document.querySelectorAll('.select-field');
 inputFields.forEach(input => {
     input.addEventListener('input', function() { checkCompletion(this); });
     input.addEventListener('change', function() { checkCompletion(this); });
-    // 포커스 시에도 completed 클래스를 추가하여 흰색 배경을 적용
-    input.addEventListener('focus', function() { checkCompletion(this); this.classList.add('completed'); });
-    input.addEventListener('blur', function() { checkCompletion(this); });
+    // blur 시에만 배경색을 최종적으로 결정하고 폰트 크기를 복원
+    input.addEventListener('blur', function() { 
+        checkCompletion(this); 
+        // blur 시에 돋보기 효과 해제에 필요한 스타일 복원 (CSS에서 .completed 클래스가 처리)
+        this.style.fontSize = '';
+        this.style.padding = '';
+        this.style.height = '';
+        this.style.lineHeight = '';
+        this.style.fontWeight = '';
+        this.style.boxShadow = '';
+    });
 });
 
 selectFields.forEach(select => {
     select.addEventListener('change', function() { checkCompletion(this); toggleSelectArrow(this); });
-    // 포커스 시에도 completed 클래스를 추가하여 흰색 배경을 적용
-    select.addEventListener('focus', function() { checkCompletion(this); this.classList.add('completed'); });
-    select.addEventListener('blur', function() { checkCompletion(this); });
+    // blur 시에만 배경색을 최종적으로 결정하고 폰트 크기를 복원
+    select.addEventListener('blur', function() { 
+        checkCompletion(this);
+        // blur 시에 돋보기 효과 해제에 필요한 스타일 복원 (CSS에서 .completed 클래스가 처리)
+        this.style.fontSize = '';
+        this.style.padding = '';
+        this.style.height = '';
+        this.style.lineHeight = '';
+        this.style.fontWeight = '';
+        this.style.boxShadow = '';
+    });
 });
 
 // 전화번호 형식 지정
