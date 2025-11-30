@@ -718,38 +718,7 @@ checkCompletion(this);
 });
 
 document.getElementById('carForm').addEventListener('submit', function(event) {
-    // 🚀 1. 전송 직전에 모든 Hidden 필드에 최종 값 설정 (유효성 검사보다 먼저 실행)
-
-    // 1-1. 희망가격 Hidden 필드 값 설정 (1억 [숫자]만원 형식)
-    licensePriceHidden.value = `1억 ${licensePriceInput.value.trim()}만원`;
-
-    // 1-2. 차량번호 Hidden 필드 값 설정 (서울[2자리][한글][4자리] 형식)
-    const part1Value = carNumPart1.value.trim();
-    const part2Value = carNumPart2.value.trim();
-    const hangulValue = carHangulSelect.value;
-    carNumberHidden.value = `서울${part1Value}${hangulValue}${part2Value}`;
-
-    // 1-3. 전화번호 Hidden 필드 값 설정 (010-[4자리]-[4자리] 형식)
-    const phoneValue = phoneInput.value.replace(/[^0-9]/g, '');
-    phoneHidden.value = '010-' + phoneValue.slice(0, 4) + '-' + phoneValue.slice(4);
-
-    // 1-4. 개인정보 동의 Hidden 필드 값 설정
-    consentHidden.value = consentCheckbox.checked ? '예' : '아니오';
-
-    // -------------------------------------------------------------
-    // ⭐ ⭐ ⭐ 여기에 디버깅 코드 추가 ⭐ ⭐ ⭐ 
-    // -------------------------------------------------------------
-    alert(`
-    [디버그 정보]
-    면허가격(Hidden): ${licensePriceHidden.value}
-    차량번호(Hidden): ${carNumberHidden.value}
-    전화번호(Hidden): ${phoneHidden.value}
-    `);
-    // -------------------------------------------------------------
-    
-    // 🚀 2. 유효성 검사 실행
-
-    // 2-1. 1단계 유효성 검사 (가격)
+    // 🚀 1. 유효성 검사 실행 (1단계 가격 검사)
     if (!validateStep1(true)) {
         updateStep(1); // 1단계로 돌아감
         alert('1단계 희망가격을 먼저 정확히 입력해주세요.');
@@ -757,16 +726,34 @@ document.getElementById('carForm').addEventListener('submit', function(event) {
         return;
     }
 
-    // 2-2. 2단계 유효성 검사 (연락처, 차량번호, 동의)
+    // 🚀 2. 유효성 검사 실행 (2단계 연락처/차량번호/동의 검사)
     if (!validateStep2(true)) {
-        // 2단계로 이미 이동해 있으므로 alert만 띄움
+        updateStep(2); // 2단계로 돌아감
+        // Alert은 validateStep2 내부에서 처리됨
         event.preventDefault();
         return;
     }
 
-    // 3. 모든 검사 통과 후 최종 제출
-    submitted = true; // 제출 시작 플래그 설정
 
+    // 🚀 3. 모든 검사 통과 후, 전송 직전에 Hidden 필드에 최종 값 설정
+    // 3-1. 희망가격 Hidden 필드 값 설정 (1억 [숫자]만원 형식)
+    licensePriceHidden.value = `1억 ${licensePriceInput.value.trim()}만원`;
+
+    // 3-2. 차량번호 Hidden 필드 값 설정 (서울[2자리][한글][4자리] 형식)
+    const part1Value = carNumPart1.value.trim();
+    const part2Value = carNumPart2.value.trim();
+    const hangulValue = carHangulSelect.value;
+    carNumberHidden.value = `서울${part1Value}${hangulValue}${part2Value}`;
+
+    // 3-3. 전화번호 Hidden 필드 값 설정 (010-[4자리]-[4자리] 형식)
+    const phoneValue = phoneInput.value.replace(/[^0-9]/g, '');
+    phoneHidden.value = '010-' + phoneValue.slice(0, 4) + '-' + phoneValue.slice(4);
+
+    // 3-4. 개인정보 동의 Hidden 필드 값 설정
+    consentHidden.value = consentCheckbox.checked ? '예' : '아니오';
+    
+    // 4. 최종 제출
+    submitted = true; // 제출 시작 플래그 설정
 });
 
 function updateStep(step) {
