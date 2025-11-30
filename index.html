@@ -15,7 +15,7 @@
 --input-padding-vertical: 12px;
 --mobile-breakpoint: 600px;
 /* 입력 그룹 하단 마진 재조정 (항목 간 간격 35px로 유지) */
---input-margin-bottom: 35px; 
+--input-margin-bottom: 35px; 
 
 /* --- 🎨 Theme Colors --- */
 --main-color: #1976D2;
@@ -139,9 +139,9 @@ margin-bottom: var(--input-margin-bottom);
 .input-group.stack-label-group label {
 width: 100%;
 /* 라벨 높이 */
-height: var(--label-height); 
+height: var(--label-height); 
 /* ✅ 라벨과 입력 필드 간격 확대 (15px로 유지) */
-margin-bottom: 15px; 
+margin-bottom: 15px; 
 align-items: center;
 text-align: center;
 padding: 0;
@@ -425,12 +425,12 @@ margin-bottom: 0;
 
 /* 귀중 텍스트 스타일 */
 .recipient-text {
-    font-size: 0.9em;
-    font-weight: 700;
-    color: #4CAF50; 
-    text-align: right;
-    margin-top: 10px;
-    padding-right: 5px;
+    font-size: 0.9em;
+    font-weight: 700;
+    color: #4CAF50; 
+    text-align: right;
+    margin-top: 10px;
+    padding-right: 5px;
 }
 
 .footer-content { padding: 0 var(--content-padding) 25px; }
@@ -440,25 +440,25 @@ margin-bottom: 0;
 /* --- ⬇️ 뒤로가기 버튼 스타일 ("뒤로" 텍스트 반영) ⬇️ --- */
 
 .prev-btn {
-    width: 80px; /* 버튼 너비 확장 */
-    padding: 15px 10px;
-    background-color: #CFD8DC;
-    color: var(--text-color);
-    border: none;
-    border-radius: 10px;
-    font-weight: 800; /* 폰트 굵게 */
-    font-size: 1.3em; /* 폰트 크기 확대 */
-    cursor: pointer;
-    flex-shrink: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    line-height: 1;
-    position: static; 
+    width: 80px; /* 버튼 너비 확장 */
+    padding: 15px 10px;
+    background-color: #CFD8DC;
+    color: var(--text-color);
+    border: none;
+    border-radius: 10px;
+    font-weight: 800; /* 폰트 굵게 */
+    font-size: 1.3em; /* 폰트 크기 확대 */
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
+    position: static; 
 }
 
 .prev-btn::before {
-    content: none; 
+    content: none; 
 }
 /* --- ⬆️ 뒤로가기 버튼 스타일 끝 ⬆️ --- */
 
@@ -502,7 +502,7 @@ font-size: 1.1em !important;
 <body>
 <div class="container">
 <form id="carForm"
-action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdtlLCtJgb8Hk2euFlvwzO6REqox0Xt7xIfpPYDphtoTUyDCA/formResponse"
+action="https://docs.google.com/forms/d/e/1FAIpQLSclJyEUDbWTfEuDYD1WT6teupgdchWXekhOPs0eGHpC2voH6A/formResponse"
 method="POST"
 target="hidden_iframe">
 <div class="header-content">
@@ -514,127 +514,127 @@ target="hidden_iframe">
 <input type="hidden" name="fbzx" value="3762433657792349989">
 <input type="hidden" name="submissionTimestamp" value="-1">
 
-<input type="hidden" id="phoneHidden" name="entry.175287969" value="">
-<input type="hidden" id="carNumberHidden" name="entry.1138987432" value="">
-<input type="hidden" id="consentHidden" name="entry.492222952" value="" required>
-<input type="hidden" name="entry.475598332" id="licensePriceHidden">
+<input type="hidden" id="phoneHidden" name="entry.1565385945" value="">
+<input type="hidden" id="carNumberHidden" name="entry.1961657672" value="">
+<input type="hidden" id="consentHidden" name="entry.1204688294" value="" required>
+<input type="hidden" name="entry.770593956" id="licensePriceHidden">
 
 <div class="step active" id="step1">
-    <div class="step-content">
-        <div class="section-title">1단계 : 판매희망가 입력</div>
-        <div class="input-group stack-label-group">
-            <label>면허판매 희망가(차량가격 제외)</label>
-            <div class="input-field-wrapper">
-                <div class="price-input-group">
-                    <div class="unified-price-input">
-                        <span class="price-fixed-text">1억</span>
-                        <input type="text"
-                            id="licensePriceInput"
-                            name="license_price_display"
-                            placeholder="숫자입력"
-                            inputmode="numeric"
-                            maxlength="4"
-                            class="data-input-field"
-                            required>
-                        <span class="price-unit-text">만원</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="footer-content">
-        <div class="button-group">
-            <button type="button" id="nextBtn" onclick="nextStep(1)">다음 단계로</button>
-        </div>
-    </div>
+    <div class="step-content">
+        <div class="section-title">1단계 : 판매희망가 입력</div>
+        <div class="input-group stack-label-group">
+            <label>면허판매 희망가(차량가격 제외)</label>
+            <div class="input-field-wrapper">
+                <div class="price-input-group">
+                    <div class="unified-price-input">
+                        <span class="price-fixed-text">1억</span>
+                        <input type="text"
+                            id="licensePriceInput"
+                            name="license_price_display"
+                            placeholder="숫자입력"
+                            inputmode="numeric"
+                            maxlength="4"
+                            class="data-input-field"
+                            required>
+                        <span class="price-unit-text">만원</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-content">
+        <div class="button-group">
+            <button type="button" id="nextBtn" onclick="nextStep(1)">다음 단계로</button>
+        </div>
+    </div>
 </div>
 
 <div class="step" id="step2">
-    <div class="step-content">
-        <div class="section-title">2단계 : 연락정보 입력</div>
-        <div class="input-group">
-            <label for="name">성함</label>
-            <div class="input-field-wrapper">
-                <input type="text"
-                    id="name"
-                    name="entry.1321762290" 
-                    required
-                    placeholder="성함 입력" class="data-input-field">
-            </div>
-        </div>
-        <div class="input-group">
-            <label for="phone">전화번호</label>
-            <div class="input-field-wrapper">
-                <div class="split-unit-wrapper">
-                    <span class="phone-unit-box">010 -</span>
-                    <input type="text"
-                        id="phone"
-                        name="phone_display"
-                        required
-                        placeholder="8자리 입력" inputmode="numeric"
-                        maxlength="9"
-                        class="phone-input-field data-input-field">
-                </div>
-            </div>
-        </div>
-        
-        <div class="input-group car-number-group stack-label-group">
-            <label>차량번호 입력 (예시 : 서울30아1234)</label>
-            <div class="input-field-wrapper">
-                <div class="car-number-split-wrapper">
-                    <button type="button" class="fixed-unit-button">서울</button>
-                    <input type="text"
-                        id="carNumPart1"
-                        name="car_num_part1_display"
-                        required
-                        placeholder="2자리"
-                        maxlength="2"
-                        inputmode="numeric"
-                        class="num-part data-input-field">
-                    <div class="select-box car-hangul-box">
-                        <select id="carHangulSelect" required class="select-field">
-                            <option value="" disabled selected>선택</option>
-                            <option value="아">아</option>
-                            <option value="바">바</option>
-                            <option value="사">사</option>
-                            <option value="자">자</option>
-                        </select>
-                    </div>
-                    <input type="text"
-                        id="carNumPart2"
-                        name="car_num_part2_display"
-                        required
-                        placeholder="4자리"
-                        maxlength="4"
-                        inputmode="numeric"
-                        class="num-part data-input-field">
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="consent-section">
-        <div class="consent-group">
-            <input type="checkbox" id="consent" required>
-            <label for="consent" class="consent-label">개인정보 수집 및 이용에 동의합니다.</label>
-        </div>
-        <div class="consent-details">
-            <p><strong>[개인정보수집 및 이용동의 상세]</strong></p>
-            <p>1. 수집 항목: 성함, 휴대폰 번호, 차량번호, 면허판매 희망가격</p>
-            <p>2. 수집 목적: 택시면허 시세 변동 알림 및 판매 상담 진행</p>
-            <p>3. 보유 및 이용 기간: 동의일로부터 3년 (알림 및 상담 종료 후 지체 없이 파기)</p>
-            <p>4. 동의 거부 시 불이익: 상기 개인정보 수집 및 이용에 동의하지 않을 경우, 가격 등록 및 알림 신청 서비스가 제한될 수 있습니다.</p>
-            <p>※ 추가 내용: 본 서비스의 최종 거래 가격은 시장 상황 및 개별 협상에 따라 달라질 수 있습니다.</p>
-            <div class="recipient-text">주식회사 한국모빌리티연구소 귀중</div>
-        </div>
-    </div>
+    <div class="step-content">
+        <div class="section-title">2단계 : 연락정보 입력</div>
+        <div class="input-group">
+            <label for="name">성함</label>
+            <div class="input-field-wrapper">
+                <input type="text"
+                    id="name"
+                    name="entry.840733529" 
+                    required
+                    placeholder="성함 입력" class="data-input-field">
+            </div>
+        </div>
+        <div class="input-group">
+            <label for="phone">전화번호</label>
+            <div class="input-field-wrapper">
+                <div class="split-unit-wrapper">
+                    <span class="phone-unit-box">010 -</span>
+                    <input type="text"
+                        id="phone"
+                        name="phone_display"
+                        required
+                        placeholder="8자리 입력" inputmode="numeric"
+                        maxlength="9"
+                        class="phone-input-field data-input-field">
+                </div>
+            </div>
+        </div>
+        
+        <div class="input-group car-number-group stack-label-group">
+            <label>차량번호 입력 (예시 : 서울30아1234)</label>
+            <div class="input-field-wrapper">
+                <div class="car-number-split-wrapper">
+                    <button type="button" class="fixed-unit-button">서울</button>
+                    <input type="text"
+                        id="carNumPart1"
+                        name="car_num_part1_display"
+                        required
+                        placeholder="2자리"
+                        maxlength="2"
+                        inputmode="numeric"
+                        class="num-part data-input-field">
+                    <div class="select-box car-hangul-box">
+                        <select id="carHangulSelect" required class="select-field">
+                            <option value="" disabled selected>선택</option>
+                            <option value="아">아</option>
+                            <option value="바">바</option>
+                            <option value="사">사</option>
+                            <option value="자">자</option>
+                        </select>
+                    </div>
+                    <input type="text"
+                        id="carNumPart2"
+                        name="car_num_part2_display"
+                        required
+                        placeholder="4자리"
+                        maxlength="4"
+                        inputmode="numeric"
+                        class="num-part data-input-field">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="consent-section">
+        <div class="consent-group">
+            <input type="checkbox" id="consent" required>
+            <label for="consent" class="consent-label">개인정보 수집 및 이용에 동의합니다.</label>
+        </div>
+        <div class="consent-details">
+            <p><strong>[개인정보수집 및 이용동의 상세]</strong></p>
+            <p>1. 수집 항목: 성함, 휴대폰 번호, 차량번호, 면허판매 희망가격</p>
+            <p>2. 수집 목적: 택시면허 시세 변동 알림 및 판매 상담 진행</p>
+            <p>3. 보유 및 이용 기간: 동의일로부터 3년 (알림 및 상담 종료 후 지체 없이 파기)</p>
+            <p>4. 동의 거부 시 불이익: 상기 개인정보 수집 및 이용에 동의하지 않을 경우, 가격 등록 및 알림 신청 서비스가 제한될 수 있습니다.</p>
+            <p>※ 추가 내용: 본 서비스의 최종 거래 가격은 시장 상황 및 개별 협상에 따라 달라질 수 있습니다.</p>
+            <div class="recipient-text">주식회사 한국모빌리티연구소 귀중</div>
+        </div>
+    </div>
 
-    <div class="footer-content">
-        <div class="button-group">
-            <button type="button" class="prev-btn" onclick="prevStep(2)">뒤로</button> 
-            <button type="submit" id="submitBtn">신청하기</button>
-        </div>
-    </div>
+    <div class="footer-content">
+        <div class="button-group">
+            <button type="button" class="prev-btn" onclick="prevStep(2)">뒤로</button> 
+            <button type="submit" id="submitBtn">신청하기</button>
+        </div>
+    </div>
 </div>
 
 </form>
@@ -718,43 +718,36 @@ checkCompletion(this);
 });
 
 document.getElementById('carForm').addEventListener('submit', function(event) {
-    // 🚀 1. 유효성 검사 실행 (1단계 가격 검사)
-    if (!validateStep1(true)) {
-        updateStep(1); // 1단계로 돌아감
-        alert('1단계 희망가격을 먼저 정확히 입력해주세요.');
-        event.preventDefault();
-        return;
-    }
+// 1단계 유효성 검사를 2단계와 독립적으로 체크합니다.
+if (!validateStep1(true)) {
+    updateStep(1); // 1단계로 돌아감
+    alert('1단계 희망가격을 먼저 정확히 입력해주세요.');
+    event.preventDefault();
+    return;
+}
 
-    // 🚀 2. 유효성 검사 실행 (2단계 연락처/차량번호/동의 검사)
-    if (!validateStep2(true)) {
-        updateStep(2); // 2단계로 돌아감
-        // Alert은 validateStep2 내부에서 처리됨
-        event.preventDefault();
-        return;
-    }
+if (!validateStep2(true)) {
+    // 2단계로 이미 이동해 있으므로 alert만 띄움
+    event.preventDefault();
+    return;
+}
+
+// 최종 데이터 설정 (모두 2단계 유효성 검사 후 최종 설정)
+// 1단계 값 설정
+licensePriceHidden.value = `1억 ${licensePriceInput.value.trim()}만원`;
+
+// 2단계 값 설정
+consentHidden.value = consentCheckbox.checked ? '예' : '아니오';
+const part1Value = carNumPart1.value.trim();
+const part2Value = carNumPart2.value.trim();
+const hangulValue = carHangulSelect.value;
+carNumberHidden.value = `서울${part1Value}${hangulValue}${part2Value}`;
+const phoneValue = phoneInput.value.replace(/[^0-9]/g, '');
+phoneHidden.value = '010-' + phoneValue.slice(0, 4) + '-' + phoneValue.slice(4);
 
 
-    // 🚀 3. 모든 검사 통과 후, 전송 직전에 Hidden 필드에 최종 값 설정
-    // 3-1. 희망가격 Hidden 필드 값 설정 (1억 [숫자]만원 형식)
-    licensePriceHidden.value = `1억 ${licensePriceInput.value.trim()}만원`;
+submitted = true; // 제출 시작 플래그 설정
 
-    // 3-2. 차량번호 Hidden 필드 값 설정 (서울[2자리][한글][4자리] 형식)
-    const part1Value = carNumPart1.value.trim();
-    const part2Value = carNumPart2.value.trim();
-    const hangulValue = carHangulSelect.value;
-    carNumberHidden.value = `서울${part1Value}${hangulValue}${part2Value}`;
-
-    // 3-3. 전화번호 Hidden 필드 값 설정 (010-[4자리]-[4자리] 형식)
-    const phoneValue = phoneInput.value.replace(/[^0-9]/g, '');
-    // **참고:** Google Forms에서 010-1234-5678 형식의 텍스트로 저장됩니다.
-    phoneHidden.value = '010-' + phoneValue.slice(0, 4) + '-' + phoneValue.slice(4);
-
-    // 3-4. 개인정보 동의 Hidden 필드 값 설정 ('예' 또는 '아니오'로 설정해야 Google Forms 체크박스/라디오 버튼에 연동됩니다.)
-    consentHidden.value = consentCheckbox.checked ? '예' : '아니오';
-    
-    // 4. 최종 제출
-    submitted = true; // 제출 시작 플래그 설정
 });
 
 function updateStep(step) {
@@ -788,60 +781,60 @@ updateStep(1);
 
 // **순서 변경에 따른 새로운 validateStep1 함수 (가격만)**
 function validateStep1(isSubmit = false) {
-    // 1. 면허판매 희망가격 유효성 검사
-    const priceValue = licensePriceInput.value.trim();
-    if (!priceValue || isNaN(parseInt(priceValue))) {
-        if (!isSubmit) alert('면허판매 희망가격을 숫자로 입력해주세요.');
-        if (!isSubmit) licensePriceInput.focus();
-        return false;
-    }
-    
-    return true;
+    // 1. 면허판매 희망가격 유효성 검사
+    const priceValue = licensePriceInput.value.trim();
+    if (!priceValue || isNaN(parseInt(priceValue))) {
+        if (!isSubmit) alert('면허판매 희망가격을 숫자로 입력해주세요.');
+        if (!isSubmit) licensePriceInput.focus();
+        return false;
+    }
+    
+    return true;
 }
 
 // **순서 변경에 따른 새로운 validateStep2 함수 (연락처, 차량번호, 동의)**
 function validateStep2(isSubmit = false) {
-    // 1. 성함 유효성 검사
-    if (!nameInput.value.trim()) {
-        if (!isSubmit) alert('성함을 입력해주세요.');
-        if (!isSubmit) nameInput.focus();
-        return false;
-    }
-    
-    // 2. 전화번호 유효성 검사
-    const phoneValue = phoneInput.value.replace(/[^0-9]/g, '');
-    if (phoneValue.length !== 8) {
-        if (!isSubmit) alert('전화번호 뒷 8자리를 정확히 입력해주세요.');
-        if (!isSubmit) phoneInput.focus();
-        return false;
-    }
-    
-    // 3. 차량번호 유효성 검사
-    const part1Value = carNumPart1.value.trim();
-    const part2Value = carNumPart2.value.trim();
-    const hangulValue = carHangulSelect.value;
-    
-    if (part1Value.length !== 2 || !/^\d+$/.test(part1Value) || 
-        part2Value.length !== 4 || !/^\d{4}$/.test(part2Value) || 
-        !hangulValue) {
+    // 1. 성함 유효성 검사
+    if (!nameInput.value.trim()) {
+        if (!isSubmit) alert('성함을 입력해주세요.');
+        if (!isSubmit) nameInput.focus();
+        return false;
+    }
+    
+    // 2. 전화번호 유효성 검사
+    const phoneValue = phoneInput.value.replace(/[^0-9]/g, '');
+    if (phoneValue.length !== 8) {
+        if (!isSubmit) alert('전화번호 뒷 8자리를 정확히 입력해주세요.');
+        if (!isSubmit) phoneInput.focus();
+        return false;
+    }
+    
+    // 3. 차량번호 유효성 검사
+    const part1Value = carNumPart1.value.trim();
+    const part2Value = carNumPart2.value.trim();
+    const hangulValue = carHangulSelect.value;
+    
+    if (part1Value.length !== 2 || !/^\d+$/.test(part1Value) || 
+        part2Value.length !== 4 || !/^\d{4}$/.test(part2Value) || 
+        !hangulValue) {
 
-        if (!isSubmit) alert('차량번호의 모든 부분(2자리, 문자, 4자리)을 정확히 입력하거나 선택해주세요.');
-        
-        if (part1Value.length !== 2) carNumPart1.focus();
-        else if (!hangulValue) carHangulSelect.focus();
-        else carNumPart2.focus();
-        
-        return false;
-    }
-    
-    // 4. 개인정보 동의 유효성 검사
-    if (!consentCheckbox.checked) {
-        if (!isSubmit) alert('개인정보 수집 및 이용에 동의해야 신청이 완료됩니다.');
-        if (!isSubmit) consentCheckbox.focus();
-        return false;
-    }
+        if (!isSubmit) alert('차량번호의 모든 부분(2자리, 문자, 4자리)을 정확히 입력하거나 선택해주세요.');
+        
+        if (part1Value.length !== 2) carNumPart1.focus();
+        else if (!hangulValue) carHangulSelect.focus();
+        else carNumPart2.focus();
+        
+        return false;
+    }
+    
+    // 4. 개인정보 동의 유효성 검사
+    if (!consentCheckbox.checked) {
+        if (!isSubmit) alert('개인정보 수집 및 이용에 동의해야 신청이 완료됩니다.');
+        if (!isSubmit) consentCheckbox.focus();
+        return false;
+    }
 
-    return true;
+    return true;
 }
 
 // ************************************************************
