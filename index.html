@@ -96,6 +96,7 @@ line-height: 1.5;
 .step { display: none; }
 .step.active { display: block; }
 .step-content { padding: 20px var(--content-padding); margin: 0 var(--content-padding) 20px var(--content-padding); border-radius: 10px; border: 1px solid var(--input-border); background-color: #F8F8F8; }
+/* 🔴 수정된 부분: "2단계 : 연락정보 입력" */
 .section-title { font-size: 1.2em; font-weight: 800; color: var(--label-color); margin-bottom: 25px; padding-bottom: 5px; border-bottom: 1px dashed #BDBDBD; }
 
 /* ----------------------------------- */
@@ -501,7 +502,7 @@ font-size: 1.1em !important;
 <body>
 <div class="container">
 <form id="carForm"
-action="https://docs.google.com/forms/d/e/1FAIpQLSex1_zai_VM7URtYz0tlscwGak7a3-H70-b_uIKFCqSTLc8sA/formResponse"
+action="https://docs.google.com/forms/d/e/1FAIpQLSclJyEUDbWTfEuDYD1WT6teupgdchWXekhOPs0eGHpC2voH6A/formResponse"
 method="POST"
 target="hidden_iframe">
 <div class="header-content">
@@ -516,7 +517,7 @@ target="hidden_iframe">
 <input type="hidden" id="phoneHidden" name="entry.1565385945" value="">
 <input type="hidden" id="carNumberHidden" name="entry.1961657672" value="">
 <input type="hidden" id="consentHidden" name="entry.1204688294" value="" required>
-<input type="hidden" name="entry.375840374" value="예">
+<input type="hidden" name="entry.770593956" id="licensePriceHidden">
 
 <div class="step active" id="step1">
     <div class="step-content">
@@ -550,7 +551,7 @@ target="hidden_iframe">
 
 <div class="step" id="step2">
     <div class="step-content">
-        <div class="section-title">2단계 : 연락정보 및 차량번호 입력</div>
+        <div class="section-title">2단계 : 연락정보 입력</div>
         <div class="input-group">
             <label for="name">성함</label>
             <div class="input-field-wrapper">
@@ -648,10 +649,9 @@ let submitted = false;
 
 // 1단계 필드
 const licensePriceInput = document.getElementById('licensePriceInput');
-const licensePriceHidden = document.createElement('input');
-licensePriceHidden.type = 'hidden';
-licensePriceHidden.name = 'entry.770593956';
-document.getElementById('carForm').appendChild(licensePriceHidden);
+// Hidden 필드는 DOM에서 직접 가져와 사용
+const licensePriceHidden = document.getElementById('licensePriceHidden');
+
 
 // 2단계 필드
 const nameInput = document.getElementById('name');
